@@ -2,7 +2,7 @@
 
 Standalone Arduino sketch for verifying SPI communication with the
 [AD9082](https://www.analog.com/AD9082) MxFE (mixed-signal front-end) using a
-Linduino (Arduino Mega).
+[Linduino DC2026](https://www.analog.com/DC2026).
 
 Use this sketch **before** running a full device initialization to confirm that
 the SPI bus is wired correctly and the AD9082 is responding.  No converter
@@ -24,7 +24,7 @@ digital supplies are up.
 
 | Item | Detail |
 |------|--------|
-| Controller | Linduino (Arduino Mega) |
+| Controller | Linduino DC2026 |
 | CS pin | `QUIKEVAL_CS` (pin 10 / SS) |
 | SPI clock | 1 MHz, Mode 0, MSB-first |
 | MUX mode pin | `QUIKEVAL_MUX_MODE_PIN` (pin 8, driven LOW for SPI) |
@@ -66,7 +66,7 @@ AD9082_SPI_TEST/
 ## Usage
 
 1. Open `AD9082_SPI_TEST.ino` in the Arduino IDE.
-2. Select **Arduino Mega 2560** as the board.
+2. Select **Arduino Mega 2560** as the board (the DC2026 uses the same MCU).
 3. Verify the desired preset is enabled in `config.h`.
 4. Upload the sketch.
 5. Open the Serial Monitor at **115200 baud**.
