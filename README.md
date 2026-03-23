@@ -14,9 +14,10 @@ digital supplies are up.
 1. **Chip ID read** — reads `CHIP_ID_L` (0x0003), `CHIP_ID_H` (0x0004),
    `CHIP_GRADE` (0x0006), and `SPI_CONF_A` (0x0000).  Reports an error if
    the bus returns all-0xFF (no device) or all-0x00 (stuck bus).
-2. **Scratch register write/readback** — writes five patterns (`0x5A`, `0xA5`,
-   `0x0F`, `0xF0`, `0x00`) to the scratch register (0x001C) and reads each
-   back, reporting pass/fail per pattern.
+2. **R/W register test** — writes five patterns (`0x5A`, `0xA5`,
+   `0x0F`, `0xF0`, `0x00`) to `DACCHAN_MSK` (0x001C) and reads each
+   back, reporting pass/fail per pattern.  This is the same register the
+   ADI reference API uses in `device_reg8_access_check()`.
 3. **Periodic monitor** — after the one-time tests, reads the same five
    registers every 3 seconds and prints a snapshot to the serial console.
 
@@ -85,7 +86,7 @@ SPI Hz : 1000000
   SPI conf A  : 0x18
   ID read OK.
 
---- Scratch register (0x001C) write/read test ---
+--- R/W test register 0x001C (DACCHAN_MSK) ---
   Write 0x5A -> Read 0x5A  OK
   Write 0xA5 -> Read 0xA5  OK
   Write 0x0F -> Read 0x0F  OK
@@ -102,7 +103,7 @@ Setup complete. Monitoring every 3 seconds.
 |---------|--------------|
 | All reads = `0xFF` | Device not powered, CS not connected, or MISO floating |
 | All reads = `0x00` | MOSI/SCLK not reaching the device, or CS stuck low |
-| Scratch readback mismatch | SPI mode or clock polarity mismatch |
+| R/W readback mismatch | SPI mode or clock polarity mismatch |
 
 ## Dependencies
 

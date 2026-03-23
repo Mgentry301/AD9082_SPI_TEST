@@ -22,9 +22,9 @@
 // Test registers (all accessible without converter clock)
 // =======================================================================
 #define REG_SPI_CONF_A   0x0000  // SPI interface config (R/W)
-#define REG_CHIP_ID_L    0x0003  // Chip ID low  (read-only)
-#define REG_CHIP_ID_H    0x0004  // Chip ID high (read-only)
-#define REG_SCRATCH       0x001C  // Scratch pad  (R/W)
+#define REG_CHIP_ID_L    0x0010  // Chip ID low  (read-only)
+#define REG_CHIP_ID_H    0x0013  // Chip ID high (read-only)
+#define REG_SCRATCH       0x001C  // DACCHAN_MSK — R/W, used by ADI API for SPI test
 #define REG_CHIP_GRADE    0x0006  // Grade + revision (read-only)
 
 // =======================================================================

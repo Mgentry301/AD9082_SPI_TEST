@@ -60,14 +60,21 @@ void setup() {
 
 	spi_init();
 
+	// --- Enable 4-wire SPI (SDOACTIVE) ---
+	// AD9082 defaults to 3-wire SPI (SDO high-Z). Blind-write bit 3
+	// of REG_SPI_CONF_A (0x0000) to activate the SDO output pin.
+	Serial.println(F("Enabling 4-wire SPI (SDOACTIVE)..."));
+	spi_write_reg(REG_SPI_CONF_A, 0x08);  // bit3 = SDOACTIVE
+	delay(1);
+
 	// --- Run tests ---
+	test_scratch();
+
 	bool id_ok = test_read_id();
 	if (!id_ok) {
 		Serial.println(F("\nSPI bus not responding. Halting."));
 		while (true) { delay(1000); }
 	}
-
-	test_scratch();
 
 	Serial.println(F("\nSetup complete. Monitoring every 3 seconds.\n"));
 }

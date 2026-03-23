@@ -36,7 +36,7 @@ static bool test_read_id() {
 
 // Write/readback scratch register with multiple patterns
 static bool test_scratch() {
-	Serial.println(F("\n--- Scratch register (0x001C) write/read test ---"));
+	Serial.println(F("\n--- R/W test register 0x001C (DACCHAN_MSK) ---"));
 	uint8_t failures = 0;
 
 	for (uint8_t i = 0; i < NUM_PATTERNS; i++) {
